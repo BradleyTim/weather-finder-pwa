@@ -14,8 +14,11 @@ body {
   background: var(--grey-color);
   font-family: 'Roboto', sans-serif;
   overflow: hidden;
+  height: 100vh;
 }
 
+
+/* HEADER STYLES */
 .main-header {
   background: var(--dark-color);
   opacity: 0.8;
@@ -135,13 +138,74 @@ nav ul li a {
   transform: rotate(45deg) translate(-5px, -6px);
 }
 
+/* SECTION FORM STYLES */
 
+section {
+  margin-top: 3rem;
+}
 
+section form {
+  width: 80%;
+  margin: auto;
+}
 
+section  form div input[type="text"] {
+  display: block;
+  width: 100%;
+  border-style: none;
+  border-bottom: 2px solid #999;
+  margin: .85rem 0;
+  padding: .55rem 0;
+  text-align: center;
+  font-size: 18px;
+  color: #000;
+  background: var(--grey-color);
+}
 
+section form div input[type="text"]::placeholder {
+  font-size: 18px;
+  text-align: center;
+}
 
+section form button {
+  width: 100%;
+  font-size: 18px;
+  padding: 0.5rem 2.75rem;
+  border-radius: 6px;
+  margin-top: .55rem;
+  color: var(--grey-color);
+  background: var(--dark-color);
+  border-style: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
 
+section form button:hover {
+  opacity: 0.5;
+}
 
+/* WEATHER DETAILS SECTION */
+
+.weather {
+  margin-top: 3rem;
+}
+
+.weather .container {
+  margin: auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.weather .container div {
+  width: 100%;
+  color: var(--light-color);
+  background: var(--dark-color);
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+  opacity: 0.4;
+}
 
 
 
