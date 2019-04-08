@@ -101,7 +101,7 @@ nav ul li a {
     flex-direction: column;
     align-items: center;
     width: 50%;
-    /* opacity: 0.7; */
+    opacity: 0.7;
     transform: translateX(100%);
     transition: transform 0.5s ease-in;
   }
@@ -137,6 +137,12 @@ nav ul li a {
 
 .toggle .line-3 {
   transform: rotate(45deg) translate(-5px, -6px);
+}
+
+@media (max-width: 500) {
+  body {
+    overflow:  hidden !important;
+  }
 }
 
 /* SECTION FORM STYLES */
