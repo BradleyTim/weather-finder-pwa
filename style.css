@@ -173,7 +173,7 @@ section  form div input[type="text"] {
 }
 
 section  form div input[type="text"]:focus {
-  outline-color: none;
+  outline: none !important;
   box-shadow: none;
 }
 
@@ -205,7 +205,7 @@ section form button:hover {
 }
 
 section form button:click {
-  outline: none;
+  outline: none !important;
   box-shadow: none;
 }
 
