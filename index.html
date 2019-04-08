@@ -9,40 +9,42 @@
   <title>Weather | Find out your city weather today - be on the know!</title>
 </head>
 <body>
-  <header class="main-header">
-    <nav>
-      <div class="brand">
-        <h2>Mawingu</h2>
-      </div>
-      <ul class="links">
-        <li><a href="#">Home</a></li>
-        <li><a href="http://api.openweathermap.org" target="_blank">API</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#"></a></li>
-      </ul>
-      <div class="toggler">
-        <div class="line-1"></div>
-        <div class="line-2"></div>
-        <div class="line-3"></div>
-      </div>
-    </nav>
-  </header>
-  <section>
-    <form action="">
-      <div>
-        <input type="text" id="city" autocomplete="off" placeholder="City..." required>
-      </div>
-      <div>
-        <input type="text" id="country" autocomplete="off" placeholder="Country..." required>
-      </div>
-      <button id="search">Search</button>
-    </form>
-  </section>
-  <section class="weather">
-    <div class="container">
-      <!-- weather details here -->
-    </div>
-  </section>
+  <main>
+    <header class="main-header">
+        <nav>
+          <div class="brand">
+            <h2>Mawingu</h2>
+          </div>
+          <ul class="links">
+            <li><a href="#">Home</a></li>
+            <li><a href="http://api.openweathermap.org" target="_blank">API</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#"></a></li>
+          </ul>
+          <div class="toggler">
+            <div class="line-1"></div>
+            <div class="line-2"></div>
+            <div class="line-3"></div>
+          </div>
+        </nav>
+      </header>
+      <section>
+        <form action="">
+          <div>
+            <input type="text" id="city" autocomplete="off" placeholder="City..." required>
+          </div>
+          <div>
+            <input type="text" id="country" autocomplete="off" placeholder="Country..." required>
+          </div>
+          <button id="search">Search</button>
+        </form>
+      </section>
+      <section class="weather">
+        <div class="container">
+          <!-- weather details here -->
+        </div>
+      </section>
+  </main>
   <script src="navbar.js"></script>
   <script src="main.js"></script>
 </body>

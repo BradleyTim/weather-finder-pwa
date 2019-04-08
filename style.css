@@ -86,11 +86,8 @@ nav ul li a {
 
 @media screen and (max-width: 768px) {
 
-  body {
-    background: var(--grey-color);
-    font-family: 'Roboto', sans-serif;
-    overflow-x: hidden;
-    height: 100vh;
+  main {
+    overflow: hidden;
   }
 
   .toggler {
