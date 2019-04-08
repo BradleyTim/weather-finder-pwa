@@ -162,7 +162,6 @@ section  form div input[type="text"] {
   width: 100%;
   border-style: none;
   border-bottom: 2px solid #999;
-  outline-color: none;
   margin: .85rem 0;
   padding: .55rem 0;
   text-align: center;
@@ -171,6 +170,11 @@ section  form div input[type="text"] {
   background: var(--grey-color);
   transition: all 0.3s ease;
 
+}
+
+section  form div input[type="text"]:focus {
+  outline-color: none;
+  box-shadow: none;
 }
 
 section form div input[type="text"]::placeholder {
@@ -202,6 +206,7 @@ section form button:hover {
 
 section form button:click {
   outline: none;
+  box-shadow: none;
 }
 
 /* WEATHER DETAILS SECTION */
