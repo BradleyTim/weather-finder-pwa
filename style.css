@@ -160,11 +160,16 @@ section  form div input[type="text"] {
   font-size: 18px;
   color: #000;
   background: var(--grey-color);
+  transition: all 0.3s ease;
 }
 
 section form div input[type="text"]::placeholder {
   font-size: 18px;
   text-align: center;
+}
+
+section form div input[type="text"]:focus::placeholder {
+  color: transparent;
 }
 
 section form button {
@@ -182,6 +187,10 @@ section form button {
 
 section form button:hover {
   opacity: 0.5;
+}
+
+section form button:click {
+  outline: none;
 }
 
 /* WEATHER DETAILS SECTION */
@@ -205,8 +214,14 @@ section form button:hover {
   border-radius: 5px;
   margin-bottom: 2rem;
   opacity: 0.4;
+  font-size: 18px;
+  text-transform: capitalize;
 }
 
+/* UTILITY CLASSES */
+.weather .container div.error {
+  background: rgba(255, 0, 76, 0.966)
+}
 
 
 
