@@ -33,7 +33,6 @@ nav {
   color: var(--grey-color);
   max-width: 80%;
   margin: auto;
-  position: relative;
 }
 
 nav .brand {
@@ -91,6 +90,10 @@ nav ul li a {
   .toggler {
     display: block;
     cursor: pointer;
+  }
+
+  nav {
+    position: relative;
   }
 
   nav ul   {
