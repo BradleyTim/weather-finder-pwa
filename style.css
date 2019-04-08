@@ -33,6 +33,7 @@ nav {
   color: var(--grey-color);
   max-width: 80%;
   margin: auto;
+  position: relative;
 }
 
 nav .brand {
@@ -46,7 +47,7 @@ nav .brand h2 {
 }
 
 nav ul {
-  flex: 4;
+  flex: 1;
   display: flex;
   justify-content: space-around;
   align-items: center;
