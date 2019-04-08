@@ -204,7 +204,7 @@ section form button:hover {
   opacity: 0.5;
 }
 
-section form button:click {
+section form button:focus {
   outline: none !important;
   box-shadow: none;
 }
