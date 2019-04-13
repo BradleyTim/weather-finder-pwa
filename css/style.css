@@ -11,7 +11,7 @@
 }
 
 body {
-  background: var(--grey-color);
+  background: linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143));
   font-family: 'Roboto', sans-serif;
   height: 100vh;
   width: 100vw;
@@ -22,7 +22,7 @@ body {
 /* HEADER STYLES */
 .main-header {
   background: var(--dark-color);
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 nav {
@@ -36,29 +36,30 @@ nav {
 }
 
 nav .brand {
-  flex: 1;
+  flex: 2;
   padding: 0.75rem;
   text-transform: uppercase;
 }
 
 nav .brand h2 {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 nav ul {
   flex: 1;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
-  width: 30%;
+  width: 50%;
   list-style: none;
   padding: 0.75rem;
 }
 
 nav ul li {
   text-align: center;
-  font-size: 17px;
+  font-size: 12px;
   font-weight: bold;
+  margin-left: 1rem;
 }
 
 nav ul li a {
@@ -81,72 +82,7 @@ nav ul li a {
 
 @media screen and (max-width: 1024px) {
   nav ul {
-    width: 40%;
-  }
-}
-
-@media screen and (max-width: 768px) {
-
-  .toggler {
-    display: block;
-    cursor: pointer;
-  }
-
-  nav {
-    position: relative;
-  }
-
-  nav ul   {
-    position: absolute;
-    right: 0;
-    top: 8vh;
-    height: 92vh;
-    background: var(--dark-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50%;
-    opacity: 0.7;
-    transform: translateX(130%);
-    transition: transform 0.3s ease-in;
-  }
-
-  nav ul li {
-    opacity: 0;
-  }
-}
-
-.toggler-clicked {
-  transform: translateX(25%);
-}
-
-@keyframes navTogglerFade {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.toggle .line-1 {
-  transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.toggle .line-2 {
-  opacity: 0;
-}
-
-.toggle .line-3 {
-  transform: rotate(45deg) translate(-5px, -6px);
-}
-
-@media (max-width: 500) {
-  body {
-    overflow:  hidden !important;
+    width: 30%;
   }
 }
 
@@ -165,13 +101,14 @@ section  form div input[type="text"] {
   display: block;
   width: 100%;
   border-style: none;
-  border-bottom: 2px solid #999;
+  border-bottom: 3px solid #999;
   margin: .85rem 0;
   padding: .55rem 0;
   text-align: center;
   font-size: 18px;
-  color: #000;
-  background: var(--grey-color);
+  color: var(--grey-color);
+  opacity: 0.9;
+  background: inherit;
   transition: all 0.3s ease;
 
 }
@@ -199,6 +136,7 @@ section form button {
   margin-top: .55rem;
   color: var(--grey-color);
   background: var(--dark-color);
+  opacity: 0.8;
   border-style: none;
   cursor: pointer;
   transition: all 0.3s ease-in;
@@ -240,16 +178,5 @@ section form button:focus {
 
 /* UTILITY CLASSES */
 .weather .container div.error {
-  background: rgba(255, 0, 76, 0.966)
+  background: rgba(197, 5, 62, 0.966)
 }
-
-
-
-
-
-
-
-
-
-
-
