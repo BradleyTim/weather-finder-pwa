@@ -1,5 +1,17 @@
 // WEATHER APP LOGIC
-    
+
+window.addEventListener('load', () => {
+  if('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js')
+    .then(registration => {
+      console.log('{serviceWorker} registered');
+    })
+    .catch(err => {
+      console.log('There was an error');
+    });
+  }
+});
+
 const fetchweather = async() => {
   const city = document.querySelector('#city').value;
   const country = document.querySelector('#country').value;

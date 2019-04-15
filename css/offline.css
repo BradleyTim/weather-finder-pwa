@@ -1,0 +1,32 @@
+/* OFFLINE STYLES */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(rgb(252, 253, 253), rgb(148, 150, 155));
+  overflow: hidden;
+  height: 100vh;
+}
+
+.offline-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+.offline-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.offline-content p {
+  font-size: 2rem;
+}
