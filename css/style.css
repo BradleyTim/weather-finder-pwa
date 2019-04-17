@@ -182,7 +182,7 @@ section form button:focus {
 .weather .container .error,
 .weather .container .offline {
   background: rgba(197, 5, 62, 0.966);
-  opacity: 0;
+  opacity: 1;
   z-index: 1;
 }
 

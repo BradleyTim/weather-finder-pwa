@@ -6,7 +6,9 @@ const cacheAssetFiles  = [
   '/index.html',
   '/css/style.css',
   '/js/app.js',
+  '/manifest.json',
   '/offline.json',
+  '/favicon.ico',
   '/images/icons/icon-72x72.png',
   '/images/icons/icon-96x96.png',
   '/images/icons/icon-128x128.png',
@@ -14,34 +16,7 @@ const cacheAssetFiles  = [
   '/images/icons/icon-152x152.png',
   '/images/icons/icon-192x192.png',
   '/images/icons/icon-384x384.png',
-  '/images/icons/icon-512x512.png',
-  '/favs/android-icon-36x36.png',
-  '/favs/android-icon-48x48.png',
-  '/favs/android-icon-72x72.png',
-  '/favs/android-icon-96x96.png',
-  '/favs/android-icon-144x144.png',
-  '/favs/android-icon-192x192.png',
-  '/favs/apple-icon-57x57.png',
-  '/favs/apple-icon-60x60.png',
-  '/favs/apple-icon-72x72.png',
-  '/favs/apple-icon-76x76.png',
-  '/favs/apple-icon-114x114.png',
-  '/favs/apple-icon-120x120.png',
-  '/favs/apple-icon-144x144.png',
-  '/favs/apple-icon-152x152.png',
-  '/favs/apple-icon-180x180.png',
-  '/favs/apple-icon-precomposed.png',
-  '/favs/apple-icon.png',
-  '/favs/browserconfig.xml',
-  '/favs/favicon-16x16.png',
-  '/favs/favicon-32x32.png',
-  '/favs/favicon-96x96.png',
-  '/favs/favicon.ico',
-  '/favs/ms-icon-70x70.png',
-  '/favs/ms-icon-144x144.png',
-  '/favs/ms-icon-150x150.png',
-  '/favs/ms-icon-310x310.png',
-  '/manifest.json'
+  '/images/icons/icon-512x512.png'
 ];
 
 self.addEventListener('install', (e) => {
@@ -103,7 +78,7 @@ async function networkFirst(req) {
     return response;
   } catch (error) {
     const cachedResponse = await cache.match(req);
-    return cachedResponse || caches.match('offline.json');
+    return cachedResponse || caches.match('/offline.json');
   }
 
 }
