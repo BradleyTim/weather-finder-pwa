@@ -40,6 +40,12 @@ const handleDisplay = response => {
     <div><span>Weather:</span> ${response.weather[0].main} </div>
     <div><span>Description:</span> ${response.weather[0].description}</div>
     `;
+  } else if(response.offline) {
+    container.innerHTML = `
+    <div class="offline">
+    <h1>${response.offline.title}</h1>
+    <p>${response.offline.msg}</p>
+    </div>`;
   } else {
     container.innerHTML = `<div class="error">Enter a valid city and country.</div>`;
   }

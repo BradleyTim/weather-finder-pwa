@@ -1,12 +1,12 @@
-let version = 2;
+let version = 1;
 let cacheName = `cache-v${version}`;
+let dataCacheName = `weatherdata-v${version}`;
 const cacheAssetFiles  = [
   '/',
   '/index.html',
-  '/offline.html',
   '/css/style.css',
-  '/css/offline.css',
   '/js/app.js',
+  '/offline.json',
   '/images/icons/icon-72x72.png',
   '/images/icons/icon-96x96.png',
   '/images/icons/icon-128x128.png',
@@ -65,7 +65,7 @@ self.addEventListener('activate', (e) => {
     caches.keys()
     .then(cacheNames => {
       return Promise.all(cacheNames.map(thisCacheName => {
-        if(thisCacheName !== cacheName) {
+        if(thisCacheName !== cacheName && thisCacheName !== dataCacheName) {
           console.log('serviceWorker deleting outdated cache');
           return caches.delete(thisCacheName);
         }
@@ -78,39 +78,32 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   console.log('serviceWorker request for ', e.request.url);
 
-  e.respondWith(
+  const req = e.request;
+  const dataUrl = new URL(req.url);
 
-    caches.match(e.request)
-    .then(cachedResponse => {
-      if(cachedResponse) {
-        console.log('fetching from cache!!!');
-        return cachedResponse;
-      }
+  if(dataUrl.origin === location.origin) {
+    e.respondWith(cacheFirst(req));
+  } else {
+    e.respondWith(networkFirst(req));
+  }
 
-      return fetch(e.request)
-      .then(fetchResponse => fetchResponse)
-      .catch(err => {
-        const isHtmlPage = e.request.method === 'GET' && e.request.headers.get('accept').includes('text/html');
-        if(isHtmlPage) return caches.match('/offline.html');
-      });
-
-      // const requestClone = e.request.clone();
-
-      // fetch(requestClone)
-      // .then(response => {
-      //   if(!response) {
-      //     console.log('No response from fetch');
-      //     return response;
-      //   }
-
-      //   const responseClone = response.clone();
-
-      //   caches.open(cacheName).then(cache => {
-      //     caches.put(e.request, responseClone);
-      //     return response;
-      //   })
-
-      // })
-    })
-  );
 });
+
+async function cacheFirst(req) {
+  const cacheResponse = await caches.match(req);
+  return cacheResponse || fetch(req);
+}
+
+async function networkFirst(req) {
+  const cache = await caches.open(dataCacheName);
+
+  try {
+    const response = await fetch(req);
+    cache.put(req, response.clone());
+    return response;
+  } catch (error) {
+    const cachedResponse = await cache.match(req);
+    return cachedResponse || caches.match('offline.json');
+  }
+
+}
