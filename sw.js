@@ -1,7 +1,7 @@
 let version = 1;
 let cacheName = `cache-v${version}`;
 let dataCacheName = `weatherdata-v${version}`;
-const cacheAssetFiles  = [
+const cacheAssetFiles = [
   '/',
   '/index.html',
   '/css/style.css',
@@ -20,7 +20,7 @@ const cacheAssetFiles  = [
 ];
 
 self.addEventListener('install', (e) => {
-  console.log('serviceWorker installed!!!');
+  //console.log('serviceWorker installed!!!');
   self.skipWaiting();
 
   e.waitUntil(
@@ -34,13 +34,13 @@ self.addEventListener('install', (e) => {
 
 
 self.addEventListener('activate', (e) => {
-  console.log('serviceWorker activated!!!');
+  //console.log('serviceWorker activated!!!');
 
   e.waitUntil(
     caches.keys()
     .then(cacheNames => {
       return Promise.all(cacheNames.map(thisCacheName => {
-        if(thisCacheName !== cacheName && thisCacheName !== dataCacheName) {
+        if (thisCacheName !== cacheName && thisCacheName !== dataCacheName) {
           console.log('serviceWorker deleting outdated cache');
           return caches.delete(thisCacheName);
         }
@@ -51,12 +51,12 @@ self.addEventListener('activate', (e) => {
 
 
 self.addEventListener('fetch', (e) => {
-  console.log('serviceWorker request for ', e.request.url);
+  //console.log('serviceWorker request for ', e.request.url);
 
   const req = e.request;
   const dataUrl = new URL(req.url);
 
-  if(dataUrl.origin === location.origin) {
+  if (dataUrl.origin === location.origin) {
     e.respondWith(cacheFirst(req));
   } else {
     e.respondWith(networkFirst(req));
