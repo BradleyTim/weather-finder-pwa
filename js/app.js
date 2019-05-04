@@ -1,4 +1,4 @@
-import env from '../config.js';
+// import env from '../config.js';
 
 // FETCH THE WEATHER DATA FROM API
 const fetchWeather = async () => {
