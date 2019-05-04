@@ -6,8 +6,8 @@ const fetchWeather = async () => {
   const country = document.querySelector("#country").value.toLowerCase();
 
   try {
-    const API_KEY = env.API_KEY || process.env.API_KEY;
-    const PROXY = env.PROXY || process.env.PROXY;
+    const API_KEY = process.env.API_KEY || env.API_KEY;
+    const PROXY = process.env.PROXY || env.PROXY;
     const api_call = await fetch(
       `${PROXY}https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
     );
