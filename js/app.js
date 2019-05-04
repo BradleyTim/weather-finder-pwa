@@ -1,4 +1,4 @@
-// import env from '../config.js';
+// WEATHER APP LOGIC
 
 // FETCH THE WEATHER DATA FROM API
 const fetchWeather = async () => {
@@ -6,10 +6,10 @@ const fetchWeather = async () => {
   const country = document.querySelector("#country").value.toLowerCase();
 
   try {
-    const API_KEY = process.env.API_KEY || env.API_KEY;
-    const PROXY = process.env.PROXY || env.PROXY;
+    const API_KEY = "cf701ba1fa0b6880bd6c1a3d23e41be5";
+    const proxy = "https://cors-anywhere.herokuapp.com/";
     const api_call = await fetch(
-      `${PROXY}https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
+      `${proxy}https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
     );
 
     const response = await api_call.json();
