@@ -1,50 +1,60 @@
 // WEATHER APP LOGIC
 
 // FETCH THE WEATHER DATA FROM API
-const fetchWeather = async () => {
-  const city = document.querySelector("#city").value.toLowerCase();
-  const country = document.querySelector("#country").value.toLowerCase();
+function getWeather() {
+  let longitude;
+  let latitude;
 
-  try {
-    const API_KEY = "cf701ba1fa0b6880bd6c1a3d23e41be5";
-    const proxy = "https://cors-anywhere.herokuapp.com/";
-    const api_call = await fetch(
-      `${proxy}https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
-    );
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(position => {
+      console.log(position);
+      longitude = position.coords.longitude;
+      latitude = position.coords.latitude;
 
-    const response = await api_call.json();
+      const API_KEY = "ebfa28b0defa9d7514fcd7d4bb8031fb";
+      const proxy = "https://cors-anywhere.herokuapp.com/";
 
-    displayResults(response);
-  } catch (error) {
-    console.log(error);
+      fetch(
+          `${proxy}https://api.darksky.net/forecast/${API_KEY}/${latitude},${longitude}`
+        )
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          console.log(data);
+          displayResults(data);
+        })
+        .catch(error => console.log("something went wrong", error));
+    });
   }
-};
+}
 
 // DISPLAY THE WEATHER RESPONSE
-const displayResults = response => {
+function displayResults(data) {
   const container = document.querySelector(".container");
 
-  if (response.main) {
+  if (data.timezone) {
     container.innerHTML = `
-    <div><span>Temperature:</span> ${response.main.temp} celcius</div>
-    <div><span>Humidity:</span> ${response.main.humidity}</div>
-    <div><span>Weather:</span> ${response.weather[0].main} </div>
-    <div><span>Description:</span> ${response.weather[0].description}</div>
+    <div><span>Timezone:</span> ${data.timezone}</div>
+    <div><span>Temperature:</span> ${((data.currently.temperature - 32) *
+      (5 / 9)).toFixed(1)}°c</div>
+    <div><span>Humidity:</span> ${(data.currently.humidity * 100).toFixed(0)}%</div>
+    <div><span>${data.currently.summary} </div>
     `;
-  } else if (response.offline) {
-    console.log(response.offline);
+  } else if (data.offline) {
     container.innerHTML = `
     <div class="offline">
-      <h1>${response.offline.title}</h1>
-      <p>${response.offline.msg}</p>
+      <h1>${data.offline.title}</h1>
+      <p>${data.offline.msg}</p>
     </div>`;
   } else {
-    container.innerHTML = `<div class="error">Enter a valid city and country</div>`;
+    container.innerHTML = `<div class="error">Kindly turn on your location</div>`;
   }
-};
+}
 
 // REGISTER THE SERVICEWORKER FOR PWA CAPABILITIES
 window.addEventListener("load", () => {
+  getWeather();
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("./sw.js")
@@ -55,12 +65,4 @@ window.addEventListener("load", () => {
         console.log("There was an error");
       });
   }
-});
-
-// CALL FETCHWEATHER FUNCTION WHEN BUTTON IS CLICKED
-const button = document.querySelector("#search");
-button.addEventListener("click", e => {
-  e.preventDefault();
-
-  fetchWeather();
 });

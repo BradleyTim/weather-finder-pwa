@@ -47,6 +47,11 @@ nav .brand h2 {
   font-weight: 730;
 }
 
+nav .brand h2 a {
+  color: var(--grey-color);
+  text-decoration: none;
+}
+
 nav ul {
   flex: 1;
   display: flex;
@@ -99,7 +104,7 @@ section form {
   margin: auto;
 }
 
-section  form div input[type="text"] {
+section form div input[type="text"] {
   display: block;
   width: 100%;
   border-style: none;
@@ -115,7 +120,7 @@ section  form div input[type="text"] {
 
 }
 
-section  form div input[type="text"]:focus {
+section form div input[type="text"]:focus {
   outline: none !important;
   box-shadow: none;
 }
