@@ -4,8 +4,10 @@ let dataCacheName = `weatherdata-v${version}`;
 const cacheAssetFiles = [
   '/',
   '/index.html',
+  '/pages/search.html',
   '/css/style.css',
   '/js/app.js',
+  '/js/search.js',
   '/manifest.json',
   '/offline.json',
   '/favicon.ico',

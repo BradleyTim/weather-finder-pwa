@@ -7,7 +7,6 @@ function getWeather() {
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
-      console.log(position);
       longitude = position.coords.longitude;
       latitude = position.coords.latitude;
 
@@ -21,11 +20,13 @@ function getWeather() {
           return res.json();
         })
         .then(data => {
-          console.log(data);
+          //console.log(data);
           displayResults(data);
         })
         .catch(error => console.log("something went wrong", error));
     });
+  } else {
+    alert('Your device is not geolocation supported. Sorry.')
   }
 }
 
