@@ -90,6 +90,8 @@ window.addEventListener("load", () => {
 const button = document.querySelector("#search");
 button.addEventListener("click", e => {
   e.preventDefault();
+  const container = document.querySelector(".container");
+  container.textContent = '';
 
   fetchWeather();
 });

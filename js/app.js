@@ -84,12 +84,16 @@ function displayResults(data) {
 
 // REGISTER THE SERVICEWORKER FOR PWA CAPABILITIES
 window.addEventListener("load", () => {
+  const container = document.querySelector(".container");
+  container.textContent = "";
   getWeather();
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("./sw.js")
       .then(registration => {
-        console.log("{serviceWorker} registered");
+        console.log(
+          "{serviceWorker} registered"
+        );
       })
       .catch(err => {
         console.log("There was an error");
