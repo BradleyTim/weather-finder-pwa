@@ -5,6 +5,12 @@ function getWeather() {
   let longitude;
   let latitude;
 
+  const container = document.querySelector(".container");
+  const loading = document.createElement("img");
+  loading.classList.add("loader");
+  loading.src = "/images/loading.gif";
+  container.appendChild(loading);
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
       longitude = position.coords.longitude;
@@ -21,6 +27,7 @@ function getWeather() {
         })
         .then(data => {
           // console.log(data);
+          loading.style.display = 'none';
           displayResults(data);
         })
         .catch(error => console.log("something went wrong", error));
@@ -33,32 +40,24 @@ function getWeather() {
 // DISPLAY THE WEATHER RESPONSE
 function displayResults(data) {
   const container = document.querySelector(".container");
-  const loading = document.createElement('img');
-  loading.src = '/images/loading.gif';
-  loading.style.display = 'block';
-  container.appendChild(loading);
 
   if (data.timezone) {
-
-    const timezoneDiv = document.createElement('div');
+    const timezoneDiv = document.createElement("div");
     timezoneDiv.textContent = `Timezone, ${data.timezone}`;
 
-    const summaryDiv = document.createElement('div');
+    const summaryDiv = document.createElement("div");
     summaryDiv.textContent = `${data.currently.summary}`;
 
-    const tempDiv = document.createElement('div');
+    const tempDiv = document.createElement("div");
     tempDiv.textContent = `Temperature, ${((data.currently.temperature - 32) * (5 / 9)).toFixed(1)}°c`;
 
-    const humidityDiv = document.createElement('div');
+    const humidityDiv = document.createElement("div");
     humidityDiv.textContent = `Humidity, ${(data.currently.humidity * 100).toFixed(0)}%`;
-
-    loading.style.display = 'none';
 
     container.appendChild(timezoneDiv);
     container.appendChild(summaryDiv);
     container.appendChild(tempDiv);
     container.appendChild(humidityDiv);
-
   } else if (data.offline) {
     const div = document.createElement('div');
     dispatchEvent.classList.add('offline');
@@ -72,15 +71,13 @@ function displayResults(data) {
     div.appendChild(h1);
     div.appendChild(p);
 
-    loading.style.display = "none";
-
     container.appendChild(div);
 
   } else {
     const div = document.createElement('div');
     div.classList.add('error');
     div.textContent = "Kindly turn on your location";
-    loading.style.display = "none";
+    
     container.appendChild(div);
   }
 }

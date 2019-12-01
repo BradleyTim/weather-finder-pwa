@@ -13,7 +13,8 @@ const cacheAssetFiles = [
   '/favicon.ico',
   '/images/icons/icon-192x192.png',
   '/images/icons/icon-384x384.png',
-  '/images/icons/icon-512x512.png'
+  '/images/icons/icon-512x512.png',
+  '/images/loading.gif'
 ];
 
 self.addEventListener('install', (e) => {
