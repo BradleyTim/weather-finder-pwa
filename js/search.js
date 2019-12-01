@@ -5,6 +5,12 @@ const fetchWeather = async () => {
   const city = document.querySelector("#city").value.toLowerCase();
   const country = document.querySelector("#country").value.toLowerCase();
 
+  const container = document.querySelector(".container");
+  const loading = document.createElement("img");
+  loading.classList.add("loader");
+  loading.src = "/images/loading.gif";
+  container.appendChild(loading);
+
   try {
     const API_KEY = "cf701ba1fa0b6880bd6c1a3d23e41be5";
     const proxy = "https://cors-anywhere.herokuapp.com/";
@@ -13,7 +19,7 @@ const fetchWeather = async () => {
     );
 
     const response = await api_call.json();
-
+    loading.style.display = 'none';
     displayResults(response);
   } catch (error) {
     console.log(error);
@@ -25,21 +31,44 @@ const displayResults = response => {
   const container = document.querySelector(".container");
 
   if (response.main) {
-    container.innerHTML = `
-    <div><span>Temperature:</span> ${response.main.temp}°c</div>
-    <div><span>Humidity:</span> ${response.main.humidity}</div>
-    <div><span>Weather:</span> ${response.weather[0].main} </div>
-    <div><span>Description:</span> ${response.weather[0].description}</div>
-    `;
+    const descriptionDiv = document.createElement("div");
+    descriptionDiv.textContent = `Description: ${response.weather[0].description}`;
+
+    const summaryDiv = document.createElement("div");
+    summaryDiv.textContent = `Weather: ${response.weather[0].main}`;
+
+    const tempDiv = document.createElement("div");
+    tempDiv.textContent = `Temperature: ${response.main.temp}°c`;
+
+    const humidityDiv = document.createElement("div");
+    humidityDiv.textContent = `Humidity: ${response.main.humidity}`;
+
+    container.appendChild(descriptionDiv);
+    container.appendChild(summaryDiv);
+    container.appendChild(tempDiv);
+    container.appendChild(humidityDiv);
+    
   } else if (response.offline) {
-    console.log(response.offline);
-    container.innerHTML = `
-    <div class="offline">
-      <h1>${response.offline.title}</h1>
-      <p>${response.offline.msg}</p>
-    </div>`;
+    const div = document.createElement("div");
+    dispatchEvent.classList.add("offline");
+
+    const h1 = document.createElement("h1");
+    h1.textContent = data.offline.title;
+
+    const p = document.createElement("p");
+    p.textContent = data.offline.msg;
+
+    div.appendChild(h1);
+    div.appendChild(p);
+
+    container.appendChild(div);
+    
   } else {
-    container.innerHTML = `<div class="error">Enter a valid city and country</div>`;
+    const div = document.createElement("div");
+    div.classList.add("error");
+    div.textContent = "Enter a valid city and country";
+    container.appendChild(div);
+    
   }
 };
 
