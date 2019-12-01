@@ -33,7 +33,10 @@ function getWeather() {
 // DISPLAY THE WEATHER RESPONSE
 function displayResults(data) {
   const container = document.querySelector(".container");
-  container.textContent = 'Loading...'
+  const loading = document.createElement('img');
+  loading.src = '/images/loading.gif';
+  loading.style.display = 'block';
+  container.appendChild(loading);
 
   if (data.timezone) {
 
@@ -49,19 +52,13 @@ function displayResults(data) {
     const humidityDiv = document.createElement('div');
     humidityDiv.textContent = `Humidity, ${(data.currently.humidity * 100).toFixed(0)}%`;
 
-    container.textContent = '';
+    loading.style.display = 'none';
 
     container.appendChild(timezoneDiv);
     container.appendChild(summaryDiv);
     container.appendChild(tempDiv);
     container.appendChild(humidityDiv);
-    // container.innerHTML = `
-    // <div><span>Timezone:</span> ${data.timezone}</div>
-    // <div><span>Temperature:</span> ${((data.currently.temperature - 32) *
-    //   (5 / 9)).toFixed(1)}°c</div>
-    // <div><span>Humidity:</span> ${(data.currently.humidity * 100).toFixed(0)}%</div>
-    // <div><span>${data.currently.summary} </div>
-    // `;
+
   } else if (data.offline) {
     const div = document.createElement('div');
     dispatchEvent.classList.add('offline');
@@ -75,22 +72,16 @@ function displayResults(data) {
     div.appendChild(h1);
     div.appendChild(p);
 
-    container.textContent = "";
+    loading.style.display = "none";
 
     container.appendChild(div);
 
-
-    // container.innerHTML = `
-    // <div class="offline">
-    //   <h1>${data.offline.title}</h1>
-    //   <p>${data.offline.msg}</p>
-    // </div>`;
   } else {
     const div = document.createElement('div');
     div.classList.add('error');
-    container.textContent = "";
+    div.textContent = "Kindly turn on your location";
+    loading.style.display = "none";
     container.appendChild(div);
-    // container.innerHTML = `<div class="error">Kindly turn on your location</div>`;
   }
 }
 
